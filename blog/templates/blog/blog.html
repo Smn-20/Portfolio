@@ -1,8 +1,8 @@
 
 <!doctype html>
 <html lang="en">
+  {% load static %}
   <head>
-      {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -28,6 +28,7 @@
 
 
     <style>
+      
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -55,22 +56,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="https://twitter.com/20Smn"><i class="fab fa-twitter"></i><span> </span>Twitter</a>
+                  <a class="nav-link" href="#"><i class="fab fa-twitter"></i><span> </span>Twitter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://www.instagram.com/_smn_20"><i class="fab fa-instagram"></i><span> </span> Instagram</a>
+                    <a class="nav-link" href="#"><i class="fab fa-instagram"></i><span> </span> Instagram</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://www.linkedin.com/in/rusekeza-simon-pierre-27aa70177/"><i class="fab fa-linkedin"></i><span> </span> LinkedIn</a>
+                    <a class="nav-link" href="#"><i class="fab fa-linkedin"></i><span> </span> LinkedIn</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% static 'myResume.pdf' %}">Resume</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'blog' %}"><i class="fas fa-blog"></i> Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://github.com/Smn-20"><i class="fab fa-github"></i> GitHub</a>
+                  <a class="nav-link active" href="{% url 'blog' %}"><i class="fas fa-blog"></i> Blog</a>
                 </li>
                
               </ul>
@@ -79,39 +77,21 @@
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
     <div class="container">
-      <h1> <i class="far fa-hand-peace"></i> Hi, I am Simon</h1>
-      <p class="lead text-muted">I am a web and software developer and I like to learn new things.You can find other information about me in the resume above.</p>
-      <p>
-        <a href="mailto:rusekezasp@gmail.com" class="btn btn-primary my-2"><i class="far fa-envelope"></i>  Email Me</a>
-      </p>
-      <img src="{% static '_smn_20_profile_pic.jpg'%}" height="150" style="border-radius:135px;" alt="My picture">
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-     {%for job in jobs.all%}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{job.image.url}}">
-            <div class="card-body">
-              <p class="card-text">{{job.summary}}</p>
-                <small class="text-muted"></small>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-        
-        
-      </div>
-    </div>
-  </div>
-
+ <h1 class="text-center pt-4">Simon's Blog</h1>
+ <br>
+ <br>
+ 
+ <h2>Latest posts</h2>
+ <hr>
+ {% for blog in blogs.all%}
+ <a href="{% url 'detail' blog.id%}"><h3><u>{{blog.title}}</u></h3></a>
+ <p>{{blog.date}}</p>
+ <img class="img-fluid" src="{{blog.image.url}}" width=200 height=200 alt="this is a blog image">
+ <p>{{blog.small_body}}</p>
+ 
+{% endfor %}
+</div>
 </main>
 
 <footer class="text-muted">
